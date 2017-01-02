@@ -340,7 +340,6 @@
   //  };
 
    Git.prototype.tags = function (options, then) {
-     console.log('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> homemade git tag');
       var handler = Git.trailingFunctionArgument(arguments);
       var opt = (handler === then ? options : null) || {};
 
@@ -350,7 +349,7 @@
          command = command.concat(opt);
          opt = {};
       }
-
+      console.log('>>>>>>>>>>> command' + command);
       Git._appendOptions(command, opt);
 
       return this._run(command, Git._responseHandler(handler, 'TagList'));
@@ -1066,7 +1065,6 @@
     * @param {Function} [then]
     */
    Git.prototype.log = function (options, then) {
-     console.log('>>>>>>>>>>>>>>>>>>>>>>>log');
       var handler = Git.trailingFunctionArgument(arguments);
       var opt = (handler === then ? options : null) || {};
 
