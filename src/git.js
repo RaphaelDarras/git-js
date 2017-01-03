@@ -329,26 +329,14 @@
     * List all tags
     *
     * @param {Object|string[]} [options]
-    * @param {string} [options.from] The first commit to include
-    * @param {string} [options.to] The most recent commit to include
-    * @param {string} [options.file] A single file to include in the result
     *
     * @param {Function} [then]
     */
-  //  Git.prototype.tags = function (then) {
-  //     return this.tag(['-l'], Git._responseHandler(then, 'TagList'));
-  //  };
-
    Git.prototype.tags = function (options, then) {
       var handler = Git.trailingFunctionArgument(arguments);
-      var opt = (handler === then ? options : {});
 
       var command = ["tag"];
-      if (Array.isArray(opt)) {
-         command = command.concat(opt);
-         opt = {};
-      }
-      Git._appendOptions(command, opt);
+      Git._appendOptions(command, options);
 
       return this._run(command, Git._responseHandler(handler, 'TagList'));
    };
