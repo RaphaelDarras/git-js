@@ -341,17 +341,13 @@
 
    Git.prototype.tags = function (options, then) {
       var handler = Git.trailingFunctionArgument(arguments);
-      console.log('>>>>>>>>>>>> command handler: ' + handler);
-      var opt = (handler === then ? options : null) || {};
-      console.log('>>>>>>>>>>>> command opt: ' + opt);
+      var opt = (handler === then ? options : {});
 
       var command = ["tag"];
-
       if (Array.isArray(opt)) {
          command = command.concat(opt);
          opt = {};
       }
-      console.log('>>>>>>>>>>>> command after Array.isArray : ' + command);
       Git._appendOptions(command, opt);
 
       return this._run(command, Git._responseHandler(handler, 'TagList'));
